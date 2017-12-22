@@ -13,29 +13,59 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Star Wars Characters (DATA)
+// friends (DATA)
 // =============================================================
-var characters = [
+var friends = [
   {
-    routeName: "yoda",
-    name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
+    "name": "Fred",
+    "photo": "Flintstone",
+    "age": 2929,
+    "scores": [
+        5,
+        4,
+        3,
+        5,
+        2,
+        1,
+        3,
+        5,
+        4,
+        2
+    ]
   },
   {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
+    "name": "Wilma",
+    "photo": "Flintstone",
+    "age": 2928,
+    "scores": [
+        5,
+        4,
+        3,
+        5,
+        2,
+        1,
+        3,
+        2,
+        4,
+        2
+    ]
   },
   {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
+    "name": "Barney",
+    "photo": "Rubble",
+    "age": 2930,
+    "scores": [
+        5,
+        4,
+        4,
+        5,
+        3,
+        1,
+        3,
+        5,
+        1,
+        1
+    ]
   }
 ];
 
@@ -43,50 +73,48 @@ var characters = [
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+app.get("./app/public/", function(req, res) {
+  res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/add", function(req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
+app.get("./app/public/survey", function(req, res) {
+  res.sendFile(path.join(__dirname, "survey.html"));
 });
 
-app.get("/all", function(req, res) {
-  res.sendFile(path.join(__dirname, "all.html"));
+app.get("/api/friends", function(req, res) {
+  res.sendFile(path.join(__dirname, "friends.html"));
 });
 
-// Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:characters?", function(req, res) {
-  var chosen = req.params.characters;
 
-  if (chosen) {
-    console.log(chosen);
 
-    for (var i = 0; i < characters.length; i++) {
-      if (chosen === characters[i].routeName) {
-        return res.json(characters[i]);
-      }
-    }
+//   if (chosen) {
+//     console.log(chosen);
 
-    return res.json(false);
-  }
-  return res.json(characters);
-});
+//     for (var i = 0; i < characters.length; i++) {
+//       if (chosen === friends[i].routeName) {
+//         return res.json(friends[i]);
+//       }
+//     }
 
-// Create New Characters - takes in JSON input
+//     return res.json(false);
+//   }
+//   return res.json(characters);
+// });
+
+// Create New friends - takes in JSON input
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
-  var newcharacter = req.body;
+  var newfriend = req.body;
   // Using a RegEx Pattern to remove spaces from newCharacter
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  newfriend.routeName = newfriend.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newcharacter);
+  console.log(newfriend);
 
-  characters.push(newcharacter);
+  friends.push(newfriend);
 
-  res.json(newcharacter);
+  res.json(newfriend);
 });
 
 // Starts the server to begin listening
