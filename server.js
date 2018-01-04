@@ -13,109 +13,23 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// friends (DATA)
-// =============================================================
-var friends = [
-  {
-    "name": "Fred",
-    "photo": "Flintstone",
-    "age": 2929,
-    "scores": [
-        5,
-        4,
-        3,
-        5,
-        2,
-        1,
-        3,
-        5,
-        4,
-        2
-    ]
-  },
-  {
-    "name": "Wilma",
-    "photo": "Flintstone",
-    "age": 2928,
-    "scores": [
-        5,
-        4,
-        3,
-        5,
-        2,
-        1,
-        3,
-        2,
-        4,
-        2
-    ]
-  },
-  {
-    "name": "Barney",
-    "photo": "Rubble",
-    "age": 2930,
-    "scores": [
-        5,
-        4,
-        4,
-        5,
-        3,
-        1,
-        3,
-        5,
-        1,
-        1
-    ]
-  }
-];
 
 // Routes
 // =============================================================
 
-// Basic route that sends the user first to the AJAX Page
-app.get("./app/public/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
-});
-
-app.get("./app/public/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "survey.html"));
-});
-
-app.get("/api/friends", function(req, res) {
-  res.sendFile(path.join(__dirname, "friends.html"));
-});
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
 
-
-//   if (chosen) {
-//     console.log(chosen);
-
-//     for (var i = 0; i < characters.length; i++) {
-//       if (chosen === friends[i].routeName) {
-//         return res.json(friends[i]);
-//       }
-//     }
-
-//     return res.json(false);
-//   }
-//   return res.json(characters);
+// // Basic route that sends the user first to the AJAX Page
+// app.get("./app/public/", function(req, res) {
+//   res.sendFile(path.join(__dirname, "home.html"));
 // });
 
-// Create New friends - takes in JSON input
-app.post("/api/new", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var newfriend = req.body;
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newfriend.routeName = newfriend.name.replace(/\s+/g, "").toLowerCase();
+// app.get("./app/public/survey", function(req, res) {
+//   res.sendFile(path.join(__dirname, "survey.html"));
+// });
 
-  console.log(newfriend);
-
-  friends.push(newfriend);
-
-  res.json(newfriend);
-});
 
 // Starts the server to begin listening
 // =============================================================
