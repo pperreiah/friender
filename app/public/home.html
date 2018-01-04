@@ -1,56 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>FRIEND FINDER/title>
+  <title>FriendFinder Home</title>
+
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/2BFF37B5-1FF9-364A-B892-4CB9B15E3219/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/6693DDEA-329D-064A-B5A7-025A1A36B40E/abn/main.css"/><script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/home_style.css" />
+
 </head>
+
 <body>
 
   <div class="container">
+
     <div class="jumbotron">
-      <h1>FRIEND FINDER</h1>
-      <h3>The greatest resource for finding a friend!</h3>
-      <hr>
-      <a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-eye-open"></span> See potential friends</button></a>
-      <a href="/add"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus"></span> Take the survey to find a friend match.</button></a>
-    </div>
-    <div class="row">
+      <h1><i class="fa fa-facebook-square" aria-hidden="true"></i> Friend Finder</h1>
+      <h2>Answer a few basic questions. </h2>
+      <h2>Then find the friend with the greatest compatibility!</h2>
+      <br>
 
-      <div class="col-lg-12">
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Friend's on tap</strong></h3>
-          </div>
-          <div class="panel-body" id="well-section">
-
-          </div>
-        </div>
+      <div>
+        <a href="./survey.html"><button type="button" class="btn btn-lg btn-primary"><h4><span class="glyphicon glyphicon-list-alt"></span> Go to Survey</h4></button></a>
       </div>
+
     </div>
+
+<!--     <footer class="footer">
+      <div class="container">
+        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+      </div>
+    </footer> -->
+
   </div>
 
-  <script type="text/javascript">
-    //AJAX request to get data from /api  --"It knows to look at locahost/api"
-    $.get("/api", function(data) {
-      for (var i = 0; i < data.length; i++) {
-        var wellSection = $("<div>");
-        wellSection.addClass("well");
-        wellSection.attr("id", "friend-well-" + i);
-        $("#well-section").append(wellSection);
 
-        $("#friend-well-" + i).append("<h2>Name:" + data[i].name + "</h2>");
-        $("#friend-well-" + i).append("<h3>Role: " + data[i].photo + "</h4>");
-        $("#friend-well-" + i).append("<h3>Age: " + data[i].age + "</h4>");
-        $("#friend-well-" + i).append("<h3>Scores: " + data[i].scores + "</h4>");
-      }
-    });
-  </script>
-  
 </body>
+
 </html>

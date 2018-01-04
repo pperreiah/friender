@@ -1,0 +1,17 @@
+.jumbotron {
+    background-image: url(../images/jumbotronBackground2.png);
+    background-repeat: no-repeat;
+    background-position-x: 640px;
+    background-position-y: 7px;    
+    background-size: 290px;
+    height: 220px;
+    margin-top: 0px;
+    color: #3399ff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 30px;
+    padding-right: 50px;
+    vertical-align: :center;
+    align-content: center;
+    margin-top: 25px;
+}
