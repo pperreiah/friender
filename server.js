@@ -13,26 +13,13 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 // Routes
 // =============================================================
-
-require("./app/routing/apiRoutes.js")(app);
-require("./app/routing/htmlRoutes.js")(app);
-
-
-// // Basic route that sends the user first to the AJAX Page
-// app.get("./app/public/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "home.html"));
-// });
-
-// app.get("./app/public/survey", function(req, res) {
-//   res.sendFile(path.join(__dirname, "survey.html"));
-// });
-
+require('./app/routing/apiRoutes.js')(app);
+require('./app/routing/htmlRoutes.js')(app);
 
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+    console.log("App listening on PORT " + PORT);
 });
